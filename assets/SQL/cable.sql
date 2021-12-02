@@ -7,6 +7,7 @@ CREATE TABLE tb_sucursales(
     municipio VARCHAR(250),  
     estado VARCHAR(250), 
     cp INT(10), 
+    status_sucursal VARCHAR(250), 
     status INT(2),
     PRIMARY KEY(id) 
 );
@@ -22,6 +23,8 @@ CREATE TABLE tb_usuarios(
     PRIMARY KEY(id),  
     FOREIGN KEY (sucursal_id) 
     REFERENCES tb_sucursales(id) 
+     ON UPDATE CASCADE 
+    ON DELETE CASCADE 
 );
 
 
@@ -36,9 +39,12 @@ CREATE TABLE tb_clientes(
     cp_cliente VARCHAR(250), 
     estado_cliente VARCHAR(250), 
     curp_cliente VARCHAR(250), 
+    status_cliente VARCHAR(250), 
     PRIMARY KEY(id),  
     FOREIGN KEY (sucursal_id) 
     REFERENCES tb_sucursales(id) 
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
 );
 
 
@@ -55,6 +61,8 @@ CREATE TABLE tb_mensualidades(
     REFERENCES tb_sucursales(id),
     FOREIGN KEY (cliente_id) 
     REFERENCES tb_clientes(id) 
+    ON UPDATE CASCADE 
+    ON DELETE CASCADE 
 );
 
 CREATE TABLE tb_control_de_pagos(
@@ -69,4 +77,6 @@ CREATE TABLE tb_control_de_pagos(
     REFERENCES tb_sucursales(id),
     FOREIGN KEY (cliente_id) 
     REFERENCES tb_clientes(id) 
+    ON UPDATE CASCADE 
+    ON DELETE CASCADE 
 );

@@ -9,15 +9,15 @@ $direccion = $_POST['direccion'];
 $municipio = $_POST['municipio'];
 $estado = $_POST['estado'];
 $cp = $_POST['cp'];
-$status ="ACTIVO";
+$status ="1";
 
-
-$sql = "INSERT INTO tb_sucursales(Nombre_sucursal, direccion, municipio, estado, cp, status) 
-        VALUES('$nombre_sucursal', '$direccion', '$municipio', '$estado', $cp, '$status')";
-
+$sql = "INSERT INTO tb_sucursales(Nombre_sucursal, direccion, municipio, estado, cp, status_sucursal) 
+        VALUES('$nombre_sucursal', '$direccion', '$municipio', '$estado', $cp, '$status')";/*Query SQL para insertar datos a la tabla de sucursales */
 
 if (($result = mysqli_query($conexion, $sql)) === false) {
         die(mysqli_error($conexion));
-    }
-header('Location: ../views/sucursales/lista/');
+    }// Realiza la cohsulta o muestra un mensaje con el error de query.
+
+
+header('Location: ../views/sucursales/lista/'); //Dirigir a la vista de lista de sucursales
 
